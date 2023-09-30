@@ -58,7 +58,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         $notification = array(
-            'message' => 'User created successfully',
+            'message' => 'Người dùng được tạo thành công',
             'alert-type' => 'success'
         );
         return redirect()->route('users.index')
@@ -75,7 +75,7 @@ class UserController extends Controller
         $user = User::find($id);
         if($user->hasRole('Super-Admin')){
             $notification = array(
-                'message' => "You have no permission for edit this user",
+                'message' => "Bạn không có quyền chỉnh sửa người dùng này",
                 'alert-type' => 'error'
             );
             return redirect()->route('users.index')
@@ -114,7 +114,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         $notification = array(
-            'message' => 'User updated successfully',
+            'message' => 'Người dùng được cập nhật thành công',
             'alert-type' => 'success'
         );
         return redirect()->route('users.index')
@@ -126,7 +126,7 @@ class UserController extends Controller
         $user = User::find($id);
         if(auth()->id() == $id){
             $notification = array(
-                'message' => "You cannot delete yourself",
+                'message' => "Bạn không thể xóa chính bạn",
                 'alert-type' => 'error'
             );
             return redirect()->route('users.index')
@@ -134,7 +134,7 @@ class UserController extends Controller
         }
         if($user->hasRole('Super-Admin')){
             $notification = array(
-                'message' => "You have no permission for delete this user",
+                'message' => "Bạn không có quyền xóa người dùng này",
                 'alert-type' => 'error'
             );
             return redirect()->route('users.index')
@@ -142,7 +142,7 @@ class UserController extends Controller
         }
         $user->delete();
         $notification = array(
-            'message' => "User deleted successfully",
+            'message' => "Người dùng được xóa thành công",
             'alert-type' => 'success'
         );
         return redirect()->route('users.index')

@@ -45,7 +45,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+                        ->with('success','Vai trò được cập nhật thành công');
     }
 
     public function show($id)
@@ -58,7 +58,7 @@ class RoleController extends Controller
         $role = Role::find($id);
         if($role->name == 'Super-Admin'){
             $notification = array(
-                'message' => "You have no permission for edit this role",
+                'message' => "Bạn không có quyền chỉnh sửa vai trò này",
                 'alert-type' => 'error'
             );
             return redirect()->route('roles.index')
@@ -90,7 +90,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-                        ->with('success','Role updated successfully');
+                        ->with('success','Vai trò được cập nhật thành công');
     }
 
     public function destroy($id)
@@ -99,7 +99,7 @@ class RoleController extends Controller
 
         if (auth()->user()->roles->find($id)) {
             $notification = array(
-                'message' => 'You have no permission for delete this role',
+                'message' => 'Bạn không có quyền xóa vai trò này',
                 'alert-type' => 'error'
             );
             return redirect()->route('roles.index')
@@ -107,7 +107,7 @@ class RoleController extends Controller
         }
         if ($role->name == "Super-Admin"){
             $notification = array(
-                'message' => 'You have no permission for delete Super-Admin role',
+                'message' => 'Bạn không có quyền xóa vai trò Super-Admin',
                 'alert-type' => 'error'
             );
             return redirect()->route('roles.index')
@@ -116,7 +116,7 @@ class RoleController extends Controller
         $role->delete();
 
         $notification = array(
-            'message' => 'The role deleted successfully',
+            'message' => 'Vai trò được xóa thành công',
             'alert-type' => 'success'
         );
         return redirect()->route('roles.index')
