@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('permissions', PermissionController::class);
+
+    // Thêm tỉnh thành phố
+    Route::get('/location/postJson', [App\Http\Controllers\Backend\CityController::class, 'postJson']);
 });
 
 require __DIR__.'/auth.php';
